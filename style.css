@@ -1,0 +1,174 @@
+html {
+	/*Box model stuff*/
+	background: rgb(240, 240, 240);
+	/*Typography stuff*/
+	font-size: 62.5%;
+}
+
+body {
+	/*Typography stuff*/
+	font-family: sans-serif;
+	font-size: 1.6rem;
+	/*Miscellaneous*/
+	box-sizing: border-box;
+	list-style: none;
+	text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+	/*Box model stuff*/
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	/*Box model stuff*/
+	width: 60rem;
+	height: 75rem;
+	margin: 5rem auto 0;
+	padding: 0 0 5rem;
+	border: 1rem solid rgb(31, 31, 31);
+	border-radius: 3rem;
+	background: white;
+	/*Miscellaneous*/
+	overflow-y: scroll;
+}
+
+.header__img {
+	/*Display stuff*/
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	/*Box model stuff*/
+	height: 16.7rem;
+	border-radius: 1.5rem 1.5rem 0 0;
+	background-image: url(images/burger.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	/*Miscellaneous*/
+	gap: 1rem;
+}
+
+.header__img > * {
+	/*Box model stuff*/
+	margin: 0 0 0 4rem;
+	/*Typography stuff*/
+	color: white;
+}
+
+main,
+footer {
+	margin: 0 4.5rem;
+}
+
+.pizza,
+.hamburger,
+.beer {
+	/*Display stuff*/
+	display: flex;
+	align-items: center;
+	/*Box model stuff*/
+	margin-top: 4.5rem;
+	padding-bottom: 5rem;
+	border-bottom: 1px solid #8b8b8b;
+}
+
+.pizza {
+	/*Box model stuff*/
+	margin-top: 6.5rem;
+}
+
+.emoji {
+	/*Box model stuff*/
+	margin: 0 0 0.5rem;
+	/*Typography stuff*/
+	font-size: 6rem;
+}
+
+.food__information {
+	/*Display stuff*/
+	display: flex;
+	flex-direction: column;
+	/*Box model stuff*/
+	margin-left: 2rem;
+	/*Miscellaneous*/
+	gap: 1rem;
+}
+
+.ingredients {
+	/*Typography stuff*/
+	color: #8b8b8b;
+}
+
+#pizza__button,
+#hamburger__button,
+#beer__button {
+	/*Box model stuff*/
+	width: 5rem;
+	margin-left: auto;
+	padding: 0 0 0.1rem 0.1rem;
+	border: 2px solid #dedede;
+	border-radius: 50%;
+	background: none;
+	/*Typography stuff*/
+	font-size: 2rem;
+	color: #595959;
+	/*Miscellaneous*/
+	aspect-ratio: 1/1;
+}
+
+#pizza__button:hover,
+#hamburger__button:hover,
+#beer__button:hover {
+	background: #f9f9f9;
+}
+
+button:hover {
+	/*Miscellaneous*/
+	cursor: pointer;
+}
+
+.price__container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.order__title {
+	text-align: center;
+	margin-top: 3.5rem;
+}
+
+.divide__line {
+	height: 2px;
+	width: 100%;
+	background: #393333;
+	margin: 1.5rem 0;
+}
+
+.confirm__purchase {
+	background: #16db99;
+	width: 100%;
+	/* height: fit-content; */
+	padding: 1.2em;
+	margin-top: 5rem;
+	color: white;
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+li {
+	text-decoration: none;
+	list-style: none;
+	display: flex;
+}
+
+li > p {
+	margin-left: auto;
+}
