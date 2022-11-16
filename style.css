@@ -6,13 +6,15 @@ html {
 }
 
 body {
+	/*Box model stuff*/
+	margin: 0;
 	/*Typography stuff*/
 	font-family: sans-serif;
 	font-size: 1.6rem;
+	text-decoration: none;
 	/*Miscellaneous*/
 	box-sizing: border-box;
 	list-style: none;
-	text-decoration: none;
 }
 
 h1,
@@ -27,7 +29,7 @@ p {
 
 .container {
 	/*Box model stuff*/
-	width: 60rem;
+	width: min(60rem, calc(100% - 2rem));
 	height: 75rem;
 	margin: 5rem auto 0;
 	padding: 0 0 5rem;
@@ -64,6 +66,7 @@ p {
 
 main,
 footer {
+	/*Box model stuff*/
 	margin: 0 4.5rem;
 }
 
@@ -126,6 +129,7 @@ footer {
 #pizza__button:hover,
 #hamburger__button:hover,
 #beer__button:hover {
+	/*Box model stuff*/
 	background: #f9f9f9;
 }
 
@@ -135,40 +139,70 @@ button:hover {
 }
 
 .price__container {
+	/*Display stuff*/
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 }
 
 .order__title {
-	text-align: center;
+	/*Box model stuff*/
 	margin-top: 3.5rem;
+	/*Typography stuff*/
+	text-align: center;
 }
 
 .divide__line {
-	height: 2px;
+	/*Box model stuff*/
 	width: 100%;
-	background: #393333;
+	height: 2px;
 	margin: 1.5rem 0;
+	background: #393333;
 }
 
 .confirm__purchase {
-	background: #16db99;
+	/*Box model stuff*/
 	width: 100%;
-	/* height: fit-content; */
-	padding: 1.2em;
 	margin-top: 5rem;
-	color: white;
+	padding: 1.2em;
+	border: none;
+	background: #16db99;
+	/*Typography stuff*/
 	font-size: 2rem;
 	font-weight: bold;
+	color: white;
+	/*Miscellaneous*/
+	/* height: fit-content; */
+}
+
+ul {
+	/*Box model stuff*/
+	padding: 0;
 }
 
 li {
-	text-decoration: none;
-	list-style: none;
+	/*Display stuff*/
 	display: flex;
+	/*Typography stuff*/
+	text-decoration: none;
+	/*Miscellaneous*/
+	list-style: none;
 }
 
 li > p {
+	/*Box model stuff*/
 	margin-left: auto;
+}
+
+.remove__btn {
+	/*Box model stuff*/
+	border: none;
+	background: none;
+	/*Typography stuff*/
+	color: #bbbbbb;
+}
+
+.order__container {
+	/*Display stuff*/
+	display: none;
 }
