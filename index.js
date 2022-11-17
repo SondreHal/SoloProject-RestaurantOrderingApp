@@ -25,7 +25,7 @@ const menuArray = [
 const initApp = () => {
 	////////////////////////////////////////////////////////////////////////////////////////////
 	//
-	//    INITIALIZE HTML
+	//    INITIALIZING DYNAMIC HTML
 	//
 	////////////////////////////////////////////////////////////////////////////////////////////
 	let main = document.querySelector('main');
@@ -72,6 +72,7 @@ const initApp = () => {
 	const addPizza = document.querySelector('#pizza__button');
 	const addHamburger = document.querySelector('#hamburger__button');
 	const addBeer = document.querySelector('#beer__button');
+	// empty array so i can push prices values into
 	let foodArray = [];
 
 	addPizza.addEventListener('click', () => {
@@ -89,6 +90,7 @@ const initApp = () => {
 		addFoodItem('Beer', 12);
 	});
 
+	// DYNAMIC FINAL ORDER HTML
 	function addFoodItem(food, price) {
 		const orderContainer = document.querySelector('.order__container');
 		const li = document.createElement('li');
@@ -98,7 +100,6 @@ const initApp = () => {
 
 		document.querySelector('ul').append(li);
 		li.append(foodName, removeBtn, foodPrice);
-
 		li.classList = 'food__item';
 
 		foodName.textContent = food;
@@ -109,11 +110,11 @@ const initApp = () => {
 		foodPrice.textContent = '$' + price;
 
 		removeBtn.addEventListener('click', () => {
+			// finding index of the price of the li removed so i can remove the price from the array
+			const index = foodArray.indexOf(price);
+
 			li.remove();
 			checkIfFoodItem();
-			const index = foodArray.indexOf(price);
-			console.log(foodArray);
-			console.log(price);
 			foodArray.splice(index, 1);
 			calcPrice();
 		});
