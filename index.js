@@ -146,7 +146,7 @@ const initApp = () => {
 		form.setAttribute('style', 'display: initial');
 
 		document.addEventListener('click', (e) => {
-			if (formElement.contains(e.target) || e.target === CompleteOrderBtn) {
+			if (formElement.contains(e.target) || CompleteOrderBtn.contains(e.target)) {
 				return;
 			} else {
 				form.setAttribute('style', 'display: none');
