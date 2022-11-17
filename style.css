@@ -160,7 +160,7 @@ button:hover {
 	background: #393333;
 }
 
-.confirm__purchase {
+#confirm__purchase {
 	/*Box model stuff*/
 	width: 100%;
 	margin-top: 5rem;
@@ -172,7 +172,6 @@ button:hover {
 	font-weight: bold;
 	color: white;
 	/*Miscellaneous*/
-	/* height: fit-content; */
 }
 
 ul {
@@ -205,4 +204,54 @@ li > p {
 .order__container {
 	/*Display stuff*/
 	display: none;
+}
+
+.form__container {
+	/* position: relative; */
+	bottom: 0rem;
+}
+
+form {
+	position: absolute;
+	width: 40rem;
+	left: 0;
+	right: 0;
+	margin: auto;
+	z-index: 1;
+	background: white;
+	box-shadow: 0 0 100px black;
+	padding: 4rem 2rem 2rem;
+	display: none;
+}
+
+form > h2 {
+	text-align: center;
+	margin-bottom: 4rem;
+}
+
+form > .inputs {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+input {
+	padding: 1em;
+	font-size: 2rem;
+}
+
+form > button {
+	margin-top: 3rem;
+	width: 100%;
+	font-size: 2rem;
+	padding: 0.8em;
+	border: none;
+	background: #16db99;
+	color: white;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+	display: none;
+	margin: 0;
 }

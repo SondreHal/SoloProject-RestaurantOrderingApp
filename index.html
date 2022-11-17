@@ -29,7 +29,48 @@
 					<p>The best burgers and pizzas in town</p>
 				</div>
 			</header>
-			<main></main>
+			<main>
+				<div class="form__container form">
+					<form
+						action=""
+						id="form__pay"
+					>
+						<h2>Enter card details</h2>
+						<div class="inputs">
+							<input
+								type="text"
+								id="name"
+								name="name"
+								placeholder="Enter your first name"
+								maxlength="20"
+								required
+							/>
+							<input
+								type="text"
+								id="cardNumber"
+								name="cardNumber"
+								placeholder="Enter card number"
+								maxlength="16"
+								required
+							/>
+							<input
+								type="text"
+								id="cardCVV"
+								name="cardCVV"
+								placeholder="Enter CVV"
+								maxlength="3"
+								required
+							/>
+						</div>
+						<button
+							type="submit"
+							form="form__pay"
+						>
+							Pay
+						</button>
+					</form>
+				</div>
+			</main>
 			<footer id="footer">
 				<div class="order__container">
 					<h3 class="order__title">Your order</h3>
@@ -39,7 +80,7 @@
 						<h3>Total price:</h3>
 						<p class="total__price"></p>
 					</div>
-					<button class="confirm__purchase">Complete order</button>
+					<button id="confirm__purchase">Complete order</button>
 				</div>
 			</footer>
 		</div>

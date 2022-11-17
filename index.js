@@ -137,6 +137,22 @@ const initApp = () => {
 		checkIfFoodItem();
 		calcPrice();
 	}
+
+	const CompleteOrderBtn = document.querySelector('#confirm__purchase');
+
+	CompleteOrderBtn.addEventListener('click', () => {
+		const form = document.querySelector('form');
+		const formElement = document.querySelector('.form');
+		form.setAttribute('style', 'display: initial');
+
+		document.addEventListener('click', (e) => {
+			if (e.target === formElement || formElement.contains(e.target) || e.target === CompleteOrderBtn) {
+				return;
+			} else {
+				form.setAttribute('style', 'display: none');
+			}
+		});
+	});
 };
 
 document.addEventListener('DOMContentLoaded', initApp);
