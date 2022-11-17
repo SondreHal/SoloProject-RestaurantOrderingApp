@@ -22,96 +22,120 @@ const menuArray = [
 	},
 ];
 
-let main = document.getElementById('main');
+const initApp = () => {
+	////////////////////////////////////////////////////////////////////////////////////////////
+	//
+	//    INITIALIZE HTML
+	//
+	////////////////////////////////////////////////////////////////////////////////////////////
+	let main = document.querySelector('main');
+	const fragment = document.createDocumentFragment();
 
-for (let i = 0; i < menuArray.length; i++) {
-	const { name, ingredients, id, price, emoji } = menuArray[i];
-	let dynamicFoodItem = '';
+	for (let i = 0; i < menuArray.length; i++) {
+		const { name, ingredients, price, emoji } = menuArray[i];
+		const foodItemContainer = document.createElement('div');
+		const foodItemEmoji = document.createElement('div');
+		const foodItemInfo = document.createElement('div');
+		const foodItemName = document.createElement('h2');
+		const foodItemIngredients = document.createElement('small');
+		const foodItemPrice = document.createElement('p');
+		const foodItemAdd = document.createElement('button');
 
-	dynamicFoodItem += `
-    <div class="${name.toLowerCase()}">
-		<div class="emoji">${emoji}</div>
+		fragment.append(foodItemContainer);
+		foodItemContainer.append(foodItemEmoji, foodItemInfo, foodItemAdd);
+		foodItemContainer.classList = name.toLocaleLowerCase();
 
-		<div class="food__information">
-			<h2 class="name">${name}</h2>
+		foodItemEmoji.classList = 'emoji';
+		foodItemEmoji.textContent = emoji;
 
-			<small class="ingredients">${ingredients}</small>
+		foodItemInfo.append(foodItemName, foodItemIngredients, foodItemPrice);
+		foodItemInfo.classList = 'food__information';
+		foodItemName.classList = 'name';
+		foodItemName.textContent = name;
+		foodItemIngredients.classList = 'ingredients';
+		foodItemIngredients.textContent = ingredients;
+		foodItemPrice.classList = 'price';
+		foodItemPrice.textContent = '$' + price;
 
-			<p class="price">$${price}</p>
-        </div>
+		foodItemAdd.id = name.toLocaleLowerCase() + '__button';
+		foodItemAdd.textContent = '+';
+	}
 
-        <button id="${name.toLowerCase()}__button">+</button>
-	</div>
-    `;
+	main.append(fragment);
 
-	main.innerHTML += dynamicFoodItem;
-}
+	////////////////////////////////////////////////////////////////////////////////////////////
+	//
+	//    APP LOGIC
+	//
+	////////////////////////////////////////////////////////////////////////////////////////////
+	let totalPrice = 0;
+	const addPizza = document.querySelector('#pizza__button');
+	const addHamburger = document.querySelector('#hamburger__button');
+	const addBeer = document.querySelector('#beer__button');
+	let foodArray = [];
 
-let totalPrice = 0;
-const addPizza = document.querySelector('#pizza__button');
-const addHamburger = document.getElementById('hamburger__button');
-const addBeer = document.getElementById('beer__button');
-let foodArray = [];
-
-addPizza.addEventListener('click', () => {
-	foodArray.push(14);
-	addFoodItem('Pizza', 14);
-});
-
-addHamburger.addEventListener('click', () => {
-	foodArray.push(12);
-	addFoodItem('Hamburger', 12);
-});
-
-addBeer.addEventListener('click', () => {
-	foodArray.push(12);
-	addFoodItem('Beer', 12);
-});
-
-function addFoodItem(food, price) {
-	const orderContainer = document.querySelector('.order__container');
-	const li = document.createElement('li');
-	const foodName = document.createElement('h3');
-	const removeBtn = document.createElement('button');
-	const foodPrice = document.createElement('p');
-
-	document.querySelector('ul').append(li);
-	li.append(foodName, removeBtn, foodPrice);
-
-	li.classList = 'food__item';
-
-	foodName.textContent = food;
-
-	removeBtn.textContent = 'remove';
-	removeBtn.classList = `remove__btn remove__${food}`;
-
-	foodPrice.textContent = '$' + price;
-
-	removeBtn.addEventListener('click', () => {
-		li.remove();
-		checkIfFoodItem();
-		const index = foodArray.indexOf(price);
-		console.log(foodArray);
-		console.log(price);
-		foodArray.splice(index, 1);
-		calcPrice();
+	addPizza.addEventListener('click', () => {
+		foodArray.push(14);
+		addFoodItem('Pizza', 14);
 	});
 
-	function checkIfFoodItem() {
-		if (document.querySelector('.food__items').hasChildNodes(li)) {
-			orderContainer.setAttribute('style', 'display: initial');
-		} else {
-			orderContainer.setAttribute('style', 'display: none');
+	addHamburger.addEventListener('click', () => {
+		foodArray.push(12);
+		addFoodItem('Hamburger', 12);
+	});
+
+	addBeer.addEventListener('click', () => {
+		foodArray.push(12);
+		addFoodItem('Beer', 12);
+	});
+
+	function addFoodItem(food, price) {
+		const orderContainer = document.querySelector('.order__container');
+		const li = document.createElement('li');
+		const foodName = document.createElement('h3');
+		const removeBtn = document.createElement('button');
+		const foodPrice = document.createElement('p');
+
+		document.querySelector('ul').append(li);
+		li.append(foodName, removeBtn, foodPrice);
+
+		li.classList = 'food__item';
+
+		foodName.textContent = food;
+
+		removeBtn.textContent = 'remove';
+		removeBtn.classList = `remove__btn remove__${food}`;
+
+		foodPrice.textContent = '$' + price;
+
+		removeBtn.addEventListener('click', () => {
+			li.remove();
+			checkIfFoodItem();
+			const index = foodArray.indexOf(price);
+			console.log(foodArray);
+			console.log(price);
+			foodArray.splice(index, 1);
+			calcPrice();
+		});
+
+		function checkIfFoodItem() {
+			if (document.querySelector('.food__items').hasChildNodes(li)) {
+				orderContainer.setAttribute('style', 'display: initial');
+			} else {
+				orderContainer.setAttribute('style', 'display: none');
+			}
 		}
+
+		function calcPrice() {
+			const priceTag = document.querySelector('.total__price');
+
+			totalPrice = foodArray.reduce((partialSum, a) => partialSum + a, 0);
+			priceTag.textContent = '$' + totalPrice;
+		}
+
+		checkIfFoodItem();
+		calcPrice();
 	}
+};
 
-	function calcPrice() {
-		const priceTag = document.querySelector('.total__price');
-
-		totalPrice = foodArray.reduce((partialSum, a) => partialSum + a, 0);
-		priceTag.textContent = '$' + totalPrice;
-	}
-
-	checkIfFoodItem();
-	calcPrice();
-}
+document.addEventListener('DOMContentLoaded', initApp);
