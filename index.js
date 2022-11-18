@@ -139,9 +139,10 @@ const initApp = () => {
 	}
 
 	const CompleteOrderBtn = document.querySelector('#confirm__purchase');
+	const form = document.querySelector('form');
+	// const orderFinished = document.querySelector('.order__finished');
 
 	CompleteOrderBtn.addEventListener('click', () => {
-		const form = document.querySelector('form');
 		const formElement = document.querySelector('.form');
 		form.setAttribute('style', 'display: initial');
 
@@ -152,6 +153,14 @@ const initApp = () => {
 				form.setAttribute('style', 'display: none');
 			}
 		});
+
+		// form.addEventListener('submit', () => {
+		// 	form.setAttribute('style', 'display: none');
+		// 	foodArray = [];
+		// 	// checkIfFoodItem();
+		// 	orderFinished.setAttribute('style', 'display: initial');
+		// 	console.log('hi');
+		// });
 	});
 };
 

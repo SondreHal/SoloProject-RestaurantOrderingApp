@@ -255,3 +255,7 @@ input[type='number']::-webkit-outer-spin-button {
 	display: none;
 	margin: 0;
 }
+
+.order__finished {
+	display: none;
+}
