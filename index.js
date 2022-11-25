@@ -97,6 +97,9 @@ const initApp = () => {
 		const foodName = document.createElement('h3');
 		const removeBtn = document.createElement('button');
 		const foodPrice = document.createElement('p');
+		const orderFinished = document.querySelector('.order__finished');
+
+		orderFinished.setAttribute('style', 'display: none');
 
 		document.querySelector('ul').append(li);
 		li.append(foodName, removeBtn, foodPrice);
@@ -153,14 +156,23 @@ const initApp = () => {
 				form.setAttribute('style', 'display: none');
 			}
 		});
+	});
 
-		// form.addEventListener('submit', () => {
-		// 	form.setAttribute('style', 'display: none');
-		// 	foodArray = [];
-		// 	// checkIfFoodItem();
-		// 	orderFinished.setAttribute('style', 'display: initial');
-		// 	console.log('hi');
-		// });
+	form.addEventListener('submit', () => {
+		const orderContainer = document.querySelector('.order__container');
+		const orderFinished = document.querySelector('.order__finished');
+		const orderFinishedMessage = document.querySelector('.order__finished__message');
+		const name = document.querySelector('#name').value;
+		console.log(name);
+
+		foodArray = [];
+		document.querySelector('ul').textContent = '';
+
+		orderFinishedMessage.textContent = `Thanks, ${name}! Your order is on its way!`;
+
+		form.setAttribute('style', 'display: none');
+		orderContainer.setAttribute('style', 'display: none');
+		orderFinished.setAttribute('style', 'display: flex');
 	});
 };
 

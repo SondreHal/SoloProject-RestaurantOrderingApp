@@ -34,7 +34,7 @@
 					<form
 						action=""
 						id="form__pay"
-						onsubmit="return false"
+						onsubmit="return false;"
 					>
 						<h2>Enter card details</h2>
 						<div class="inputs">
@@ -43,7 +43,7 @@
 								id="name"
 								name="name"
 								placeholder="Enter your first name"
-								maxlength="20"
+								maxlength="18"
 								required
 							/>
 							<input
@@ -63,12 +63,14 @@
 								required
 							/>
 						</div>
-						<button
+						<input
 							type="submit"
 							form="form__pay"
+							name="pay"
+							value="Pay"
 						>
-							Pay
-						</button>
+							<!-- Pay -->
+						</input>
 					</form>
 				</div>
 			</main>
@@ -83,12 +85,13 @@
 					</div>
 					<button id="confirm__purchase">Complete order</button>
 				</div>
-				<!-- <div class="order__finished">Hi</div> -->
+				<div class="order__finished"><p class="order__finished__message"></p></div>
 			</footer>
 		</div>
 		<script
 			type="module"
 			src="index.js"
-		></script>
+		>
+		</script>
 	</body>
 </html>
