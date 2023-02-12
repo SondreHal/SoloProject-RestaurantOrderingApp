@@ -190,7 +190,7 @@ footer {
 	padding: 0 24px 48px;
 }
 /* FINISHED ORDER MESSAGE */
-footer #order_finished_message_container {
+footer #order_finished_message {
 	background: #ecfdf5;
 	color: #065f46;
 	display: none;
@@ -244,7 +244,7 @@ footer #order_finished_message_container {
 	footer {
 		padding: 0 12px 24px;
 	}
-	footer #order_finished_message_container {
+	footer #order_finished_message {
 		flex-direction: column;
 		font-size: 24px;
 		gap: 0;

@@ -73,14 +73,14 @@ const initApp = () => {
 	function addFoodItem(food, price) {
 		const orderDetailsContainer = document.getElementById('order_details_container');
 		const orderDetailsUl = document.getElementById('order_details_ul');
-		const orderFinishedMessageContainer = document.getElementById('order_finished_message_container');
+		const orderFinishedMessage = document.getElementById('order_finished_message');
 		const itemFoodInCart = document.createElement('li');
 		const itemFoodName = document.createElement('p');
 		const btnRemoveItem = document.createElement('button');
 		const itemFoodPrice = document.createElement('p');
 
 		// HIDE ORDER FINISHED MESSAGE
-		orderFinishedMessageContainer.setAttribute('style', 'display: none');
+		orderFinishedMessage.setAttribute('style', 'display: none');
 
 		// HIDE FINISHED ORDER MESSAGE
 		orderDetailsUl.append(itemFoodInCart);
@@ -144,16 +144,13 @@ const initApp = () => {
 		foodArray = [];
 		const orderDetailsContainer = document.getElementById('order_details_container');
 		const orderDetailsUl = document.getElementById('order_details_ul');
-		const orderFinishedMessageContainer = document.getElementById('order_finished_message_container');
-		const orderFinishedMessage1 = document.getElementById('order_finished_message_1');
-		const orderFinishedMessage2 = document.getElementById('order_finished_message_2');
+		const orderFinishedMessage = document.getElementById('order_finished_message');
 		const customerName = document.getElementById('customer_name').value;
 
 		orderDetailsUl.textContent = '';
 		// SHOW COMPLETED ORDER MESSAGE
-		orderFinishedMessageContainer.setAttribute('style', 'display: flex');
-		orderFinishedMessage1.textContent = `Thanks, ${customerName}!`;
-		orderFinishedMessage2.textContent = `Your order is on its way!`;
+		orderFinishedMessage.setAttribute('style', 'display: flex');
+		orderFinishedMessage.textContent = `Thanks, ${customerName}! Your order is on its way!`;
 		// HIDE FORM
 		formCompleteOrder.setAttribute('style', 'display: none');
 		// HIDE ORDER DETAILS
