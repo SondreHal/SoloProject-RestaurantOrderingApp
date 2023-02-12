@@ -74,6 +74,12 @@ main {
 }
 
 .btn_add_item {
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
 	background: none;
 	border-radius: 50px;
 	border: 2px solid #dedede;
@@ -81,6 +87,7 @@ main {
 	font: 200 32px/22px 'Inter', sans-serif;
 	margin-left: auto;
 	padding: 10.5px 12.7px 13.5px;
+	user-select: none;
 }
 
 /* ORDER DETAILS */
