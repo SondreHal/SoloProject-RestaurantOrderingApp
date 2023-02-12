@@ -80,28 +80,30 @@
 					<!-- FORM -->
 					<div class="inputs_container">
 						<input
-							type="text"
 							id="customer_name"
 							name="customer_name"
+							oninput="this.value = this.value.replace(/[0-9]/g, '')"
 							placeholder="Enter your first name"
 							required
-							oninput="this.value = this.value.replace(/[0-9]/g, '')"
+							type="text"
 						/>
 						<input
-							type="text"
+							inputmode="numeric"
+							maxlength="16"
 							name="cardNumber"
+							oninput="this.value = this.value.replace(/[^0-9]/g, '')"
 							placeholder="Enter card number"
 							required
-							inputmode="numeric"
-							oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+							type="text"
 						/>
 						<input
-							type="text"
-							name="cardCVV"
-							placeholder="Enter CVV"
-							required
 							inputmode="numeric"
+							maxlength="4"
+							name="cardCVV"
 							oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+							placeholder="Enter CVV (3-4 numbers)"
+							required
+							type="text"
 						/>
 					</div>
 
