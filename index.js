@@ -1,179 +1,163 @@
 const menuArray = [
 	{
-		name: 'Pizza',
-		ingredients: ['pepperoni', 'mushroom', 'mozzarella'],
+		emoji: 'images/img_pizza.png',
 		id: 0,
+		ingredients: ['Pepperoni', 'Mushroom', 'Mozzarella'],
+		name: 'Pizza',
 		price: 14,
-		emoji: '🍕',
 	},
 	{
-		name: 'Hamburger',
-		ingredients: ['beef', 'cheese', 'lettuce'],
-		price: 12,
-		emoji: '🍔',
+		emoji: 'images/img_burger.png',
 		id: 1,
+		ingredients: ['Beef', 'Cheese', 'Lettuce'],
+		name: 'Hamburger',
+		price: 12,
 	},
 	{
-		name: 'Beer',
-		ingredients: ['grain, hops, yeast, water'],
-		price: 12,
-		emoji: '🍺',
+		emoji: 'images/img_beer.png',
 		id: 2,
+		ingredients: ['Grain, Hops, Yeast, Water'],
+		name: 'Beer',
+		price: 12,
 	},
 ];
 
 const initApp = () => {
-	////////////////////////////////////////////////////////////////////////////////////////////
-	//
-	//    INITIALIZING DYNAMIC HTML
-	//
-	////////////////////////////////////////////////////////////////////////////////////////////
-	let main = document.querySelector('main');
+	// DYNAMIC LIST OF FOOD ITEMS
 	const fragment = document.createDocumentFragment();
+	let itemFoodContainer = document.getElementById('item_foods_container');
+	let foodArray = [];
 
 	for (let i = 0; i < menuArray.length; i++) {
 		const { name, ingredients, price, emoji } = menuArray[i];
-		const foodItemContainer = document.createElement('div');
-		const foodItemEmoji = document.createElement('div');
-		const foodItemInfo = document.createElement('div');
-		const foodItemName = document.createElement('h2');
-		const foodItemIngredients = document.createElement('small');
-		const foodItemPrice = document.createElement('p');
-		const foodItemAdd = document.createElement('button');
 
-		fragment.append(foodItemContainer);
-		foodItemContainer.append(foodItemEmoji, foodItemInfo, foodItemAdd);
-		foodItemContainer.classList = name.toLocaleLowerCase();
+		const itemFood = document.createElement('li');
+		const itemFoodEmoji = document.createElement('img');
+		const itemFoodInfoContainer = document.createElement('div');
+		const itemFoodName = document.createElement('p');
+		const itemFoodIngredients = document.createElement('p');
+		const itemFoodPrice = document.createElement('p');
+		const itemFoodAddToCart = document.createElement('button');
 
-		foodItemEmoji.classList = 'emoji';
-		foodItemEmoji.textContent = emoji;
+		fragment.append(itemFood);
+		itemFood.classList = 'item_food';
+		itemFood.append(itemFoodEmoji, itemFoodInfoContainer, itemFoodAddToCart);
 
-		foodItemInfo.append(foodItemName, foodItemIngredients, foodItemPrice);
-		foodItemInfo.classList = 'food__information';
-		foodItemName.classList = 'name';
-		foodItemName.textContent = name;
-		foodItemIngredients.classList = 'ingredients';
-		foodItemIngredients.textContent = ingredients;
-		foodItemPrice.classList = 'price';
-		foodItemPrice.textContent = '$' + price;
+		// FOOD EMOJI
+		itemFoodEmoji.src = emoji;
+		itemFoodEmoji.alt = name + ' Emoji';
+		itemFoodEmoji.width = '70';
+		itemFoodEmoji.height = '70';
 
-		foodItemAdd.id = name.toLocaleLowerCase() + '__button';
-		foodItemAdd.textContent = '+';
+		// FOOD INFO
+		itemFoodInfoContainer.classList = 'item_food_info';
+		itemFoodInfoContainer.append(itemFoodName, itemFoodIngredients, itemFoodPrice);
+		// FOOD NAME
+		itemFoodName.textContent = name;
+		// FOOD INGREDIENTS
+		itemFoodIngredients.textContent = ingredients.join(', ');
+		// FOOD PRICE
+		itemFoodPrice.textContent = '$' + price;
+
+		// BUTTON TO ADD FOOD TO CART
+		itemFoodAddToCart.classList = 'btn_add_item';
+		itemFoodAddToCart.textContent = '+';
+		itemFoodAddToCart.onclick = function () {
+			foodArray.push(price);
+			addFoodItem(name, price);
+		};
 	}
+	itemFoodContainer.append(fragment);
 
-	main.append(fragment);
-
-	////////////////////////////////////////////////////////////////////////////////////////////
-	//
-	//    APP LOGIC
-	//
-	////////////////////////////////////////////////////////////////////////////////////////////
-	let totalPrice = 0;
-	const addPizza = document.querySelector('#pizza__button');
-	const addHamburger = document.querySelector('#hamburger__button');
-	const addBeer = document.querySelector('#beer__button');
-	// empty array so i can push prices values into
-	let foodArray = [];
-
-	addPizza.addEventListener('click', () => {
-		foodArray.push(14);
-		addFoodItem('Pizza', 14);
-	});
-
-	addHamburger.addEventListener('click', () => {
-		foodArray.push(12);
-		addFoodItem('Hamburger', 12);
-	});
-
-	addBeer.addEventListener('click', () => {
-		foodArray.push(12);
-		addFoodItem('Beer', 12);
-	});
-
-	// DYNAMIC FINAL ORDER HTML
+	// DYNAMIC ORDER HTML
 	function addFoodItem(food, price) {
-		const orderContainer = document.querySelector('.order__container');
-		const li = document.createElement('li');
-		const foodName = document.createElement('h3');
-		const removeBtn = document.createElement('button');
-		const foodPrice = document.createElement('p');
-		const orderFinished = document.querySelector('.order__finished');
+		const orderDetailsContainer = document.getElementById('order_details_container');
+		const orderDetailsUl = document.getElementById('order_details_ul');
+		const orderFinishedMessageContainer = document.getElementById('order_finished_message_container');
+		const itemFoodInCart = document.createElement('li');
+		const itemFoodName = document.createElement('p');
+		const btnRemoveItem = document.createElement('button');
+		const itemFoodPrice = document.createElement('p');
 
-		orderFinished.setAttribute('style', 'display: none');
+		// HIDE ORDER FINISHED MESSAGE
+		orderFinishedMessageContainer.setAttribute('style', 'display: none');
 
-		document.querySelector('ul').append(li);
-		li.append(foodName, removeBtn, foodPrice);
-		li.classList = 'food__item';
+		// HIDE FINISHED ORDER MESSAGE
+		orderDetailsUl.append(itemFoodInCart);
+		itemFoodInCart.append(itemFoodName, btnRemoveItem, itemFoodPrice);
 
-		foodName.textContent = food;
+		itemFoodName.textContent = food;
+		btnRemoveItem.textContent = 'remove';
+		btnRemoveItem.onclick = function () {
+			// REMOVES PRICE OF FOOD FROM ARRAY
+			foodArray.splice(foodArray.indexOf(price), 1);
+			// REMOVES THE FOOD ITEM FROM LIST
+			itemFoodInCart.remove();
 
-		removeBtn.textContent = 'remove';
-		removeBtn.classList = `remove__btn remove__${food}`;
-
-		foodPrice.textContent = '$' + price;
-
-		removeBtn.addEventListener('click', () => {
-			// finding index of the price of the li removed so i can remove the price from the array
-			const index = foodArray.indexOf(price);
-
-			li.remove();
-			checkIfFoodItem();
-			foodArray.splice(index, 1);
 			calcPrice();
-		});
+			checkIfFoodItem();
+		};
+		itemFoodPrice.textContent = '$' + price;
 
-		function checkIfFoodItem() {
-			if (document.querySelector('.food__items').hasChildNodes(li)) {
-				orderContainer.setAttribute('style', 'display: initial');
+		const checkIfFoodItem = () => {
+			if (orderDetailsUl.hasChildNodes(itemFoodInCart)) {
+				// SHOW ORDER DETAILS
+				orderDetailsContainer.setAttribute('style', 'display: initial');
 			} else {
-				orderContainer.setAttribute('style', 'display: none');
+				// HIDE ORDER DETAILS
+				orderDetailsContainer.setAttribute('style', 'display: none');
 			}
-		}
+		};
 
+		// CALCULATES PRICE OF CART ITEMS
 		function calcPrice() {
-			const priceTag = document.querySelector('.total__price');
+			let totalPrice = 0;
+			const orderPriceTotal = document.getElementById('order_price_total');
 
-			totalPrice = foodArray.reduce((partialSum, a) => partialSum + a, 0);
-			priceTag.textContent = '$' + totalPrice;
+			foodArray.map((num) => (totalPrice += num));
+			orderPriceTotal.textContent = '$' + totalPrice;
 		}
 
 		checkIfFoodItem();
 		calcPrice();
 	}
 
-	const CompleteOrderBtn = document.querySelector('#confirm__purchase');
-	const form = document.querySelector('form');
-	// const orderFinished = document.querySelector('.order__finished');
+	// FORM PAYMENT
+	const btnCompleteOrder = document.getElementById('btn_complete_order');
+	const formCompleteOrder = document.querySelector('form');
 
-	CompleteOrderBtn.addEventListener('click', () => {
-		const formElement = document.querySelector('.form');
-		form.setAttribute('style', 'display: initial');
+	btnCompleteOrder.onclick = function () {
+		// SHOW FORM
+		formCompleteOrder.setAttribute('style', 'display: initial');
 
 		document.addEventListener('click', (e) => {
-			if (formElement.contains(e.target) || CompleteOrderBtn.contains(e.target)) {
+			if (formCompleteOrder.contains(e.target) || btnCompleteOrder.contains(e.target)) {
 				return;
 			} else {
-				form.setAttribute('style', 'display: none');
+				// HIDE FORM
+				formCompleteOrder.setAttribute('style', 'display: none');
 			}
 		});
-	});
+	};
 
-	form.addEventListener('submit', () => {
-		const orderContainer = document.querySelector('.order__container');
-		const orderFinished = document.querySelector('.order__finished');
-		const orderFinishedMessage = document.querySelector('.order__finished__message');
-		const name = document.querySelector('#name').value;
-		console.log(name);
-
+	formCompleteOrder.addEventListener('submit', () => {
 		foodArray = [];
-		document.querySelector('ul').textContent = '';
+		const orderDetailsContainer = document.getElementById('order_details_container');
+		const orderDetailsUl = document.getElementById('order_details_ul');
+		const orderFinishedMessageContainer = document.getElementById('order_finished_message_container');
+		const orderFinishedMessage1 = document.getElementById('order_finished_message_1');
+		const orderFinishedMessage2 = document.getElementById('order_finished_message_2');
+		const customerName = document.getElementById('customer_name').value;
 
-		orderFinishedMessage.textContent = `Thanks, ${name}! Your order is on its way!`;
-
-		form.setAttribute('style', 'display: none');
-		orderContainer.setAttribute('style', 'display: none');
-		orderFinished.setAttribute('style', 'display: flex');
+		orderDetailsUl.textContent = '';
+		// SHOW COMPLETED ORDER MESSAGE
+		orderFinishedMessageContainer.setAttribute('style', 'display: flex');
+		orderFinishedMessage1.textContent = `Thanks, ${customerName}!`;
+		orderFinishedMessage2.textContent = `Your order is on its way!`;
+		// HIDE FORM
+		formCompleteOrder.setAttribute('style', 'display: none');
+		// HIDE ORDER DETAILS
+		orderDetailsContainer.setAttribute('style', 'display: none');
 	});
 };
-
-document.addEventListener('DOMContentLoaded', initApp);
+document.addEventListener('DOMContentLoaded', initApp());

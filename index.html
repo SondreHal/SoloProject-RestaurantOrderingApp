@@ -11,87 +11,112 @@
 			content="width=device-width, initial-scale=1.0"
 		/>
 		<link
-			rel="stylesheet"
-			href="style.css"
+			rel="preconnect"
+			href="https://fonts.googleapis.com"
 		/>
-		<title>Mobile Ordering App</title>
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@200&family=Smythe&display=swap"
+			rel="stylesheet"
+		/>
 		<link
 			rel="shortcut icon"
 			type="image/png"
 			href="images/burger-icon.ico"
 		/>
+		<link
+			rel="stylesheet"
+			href="style.css"
+		/>
+		<script
+			src="index.js"
+			defer
+		></script>
+		<title>Restaurant Ordering App</title>
 	</head>
+
 	<body>
-		<div class="container">
+		<div class="app_wrapper">
 			<header>
-				<div class="header__img">
-					<h1>Sondre's Diner</h1>
-					<p>The best burgers and pizzas in town</p>
-				</div>
+				<h1>Sondre's Diner</h1>
+				<h2>The best burgers and pizzas in town</h2>
 			</header>
+
 			<main>
-				<div class="form__container form">
-					<form
-						action=""
-						id="form__pay"
-						onsubmit="return false;"
-					>
-						<h2>Enter card details</h2>
-						<div class="inputs">
-							<input
-								type="text"
-								id="name"
-								name="name"
-								placeholder="Enter your first name"
-								maxlength="18"
-								required
-							/>
-							<input
-								type="text"
-								id="cardNumber"
-								name="cardNumber"
-								placeholder="Enter card number"
-								maxlength="16"
-								required
-							/>
-							<input
-								type="text"
-								id="cardCVV"
-								name="cardCVV"
-								placeholder="Enter CVV"
-								maxlength="3"
-								required
-							/>
-						</div>
-						<input
-							type="submit"
-							form="form__pay"
-							name="pay"
-							value="Pay"
-						>
-							<!-- Pay -->
-						</input>
-					</form>
-				</div>
-			</main>
-			<footer id="footer">
-				<div class="order__container">
-					<h3 class="order__title">Your order</h3>
-					<ul class="food__items"></ul>
-					<div class="divide__line"></div>
-					<div class="price__container">
-						<h3>Total price:</h3>
-						<p class="total__price"></p>
+				<!-- FOOD ITEMS -->
+				<ul id="item_foods_container"></ul>
+
+				<!-- ORDER DETAILS -->
+				<div id="order_details_container">
+					<!-- TITLE -->
+					<h3>Your order</h3>
+
+					<!-- LIST ITEMS IN CART -->
+					<ul id="order_details_ul"></ul>
+					<!-- DIVIDE LINE -->
+					<div class="divide_line"></div>
+					<!-- CONTAINER FOR PRICE INFO -->
+					<div class="order_price_container">
+						<p>Total price:</p>
+						<p id="order_price_total"></p>
 					</div>
-					<button id="confirm__purchase">Complete order</button>
+
+					<!-- CTA BUTTON -->
+					<button id="btn_complete_order">Complete order</button>
 				</div>
-				<div class="order__finished"><p class="order__finished__message"></p></div>
+
+				<!-- PAYMENT FORM -->
+				<form
+					action=""
+					id="form_pay"
+					onsubmit="return false;"
+				>
+					<!-- TITLE -->
+					<h3>Enter card details</h3>
+
+					<!-- FORM -->
+					<div class="inputs_container">
+						<input
+							type="text"
+							id="customer_name"
+							name="customer_name"
+							placeholder="Enter your first name"
+							required
+						/>
+						<input
+							type="text"
+							name="cardNumber"
+							placeholder="Enter card number"
+							required
+						/>
+						<input
+							type="text"
+							name="cardCVV"
+							placeholder="Enter CVV"
+							required
+						/>
+					</div>
+
+					<!-- CTA PAY BTN -->
+					<input
+						type="submit"
+						form="form_pay"
+						name="pay"
+						value="Pay"
+					/>
+				</form>
+			</main>
+
+			<footer>
+				<div id="order_finished_message_container">
+					<p id="order_finished_message_1"></p>
+					<p id="order_finished_message_2"></p>
+				</div>
 			</footer>
 		</div>
-		<script
-			type="module"
-			src="index.js"
-		>
-		</script>
 	</body>
 </html>
