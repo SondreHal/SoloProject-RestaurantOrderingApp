@@ -71,7 +71,6 @@
 
 				<!-- PAYMENT FORM -->
 				<form
-					action=""
 					id="form_pay"
 					onsubmit="return false;"
 				>
@@ -86,18 +85,23 @@
 							name="customer_name"
 							placeholder="Enter your first name"
 							required
+							oninput="this.value = this.value.replace(/[0-9]/g, '')"
 						/>
 						<input
 							type="text"
 							name="cardNumber"
 							placeholder="Enter card number"
 							required
+							inputmode="numeric"
+							oninput="this.value = this.value.replace(/[^0-9]/g, '')"
 						/>
 						<input
 							type="text"
 							name="cardCVV"
 							placeholder="Enter CVV"
 							required
+							inputmode="numeric"
+							oninput="this.value = this.value.replace(/[^0-9]/g, '')"
 						/>
 					</div>
 

@@ -116,8 +116,7 @@ main {
 
 /* DIVIDE LINE */
 .divide_line {
-	background: #393333;
-	height: 2px;
+	border-bottom: 2px solid #393333;
 	margin-block: 24px 16px;
 	width: 100%;
 }
@@ -206,6 +205,7 @@ footer #order_finished_message_container {
 
 @media screen and (max-width: 600px) {
 	body {
+		background: #ffffff;
 		padding: 0;
 	}
 }
